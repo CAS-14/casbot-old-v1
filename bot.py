@@ -30,11 +30,6 @@ async def _ping(ctx):
 async def hello(ctx):
     await ctx.send("Hello Joe!")
 
-@slash.slash(name="test",
-
-async def test(ctx, optone: str):
-  await ctx.send(content=f"I got you, you said {optone}!")
-
 @slash.slash(name="anothertest", guild_ids=testServers)
 async def anothertest(ctx):
     await ctx.send("efjwefiuwhe")
