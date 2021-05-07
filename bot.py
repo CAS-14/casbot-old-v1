@@ -30,10 +30,6 @@ async def _ping(ctx):
 async def hello(ctx):
     await ctx.send("Hello Joe!")
 
-@slash.slash(name="anothertest", guild_ids=testServers)
-async def anothertest(ctx):
-    await ctx.send("efjwefiuwhe")
-
 @bot.command(name='senkobread')
 async def senko(ctx):
     await ctx.send("https://cdn.discordapp.com/emojis/795829520162357298.png?v=1")
