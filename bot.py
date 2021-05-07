@@ -2,9 +2,10 @@
 import os
 import random
 
+from dotenv import load_dotenv
 from discord import *
 from discord.ext import commands
-from dotenv import load_dotenv
+from discord_slash import SlashCommand
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
