@@ -11,7 +11,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='c!')
 client = discord.Client(intents=discord.Intents.all())
-slash = SlashCommand(bot, sync_commands=True)
+slash = SlashCommand(client, sync_commands=True)
 
 testServers = [738488607261851748]
 
