@@ -14,7 +14,9 @@ bot = commands.Bot(command_prefix='c!')
 client = Client(intents=Intents.all())
 slash = SlashCommand(bot, sync_commands=True)
 
-testServers = [738488607261851748]
+#738488607261851748 Awesome Realm Official
+#674791516249653277 CAS Testing Server
+testServers = [738488607261851748,674791516249653277]
 
 @slash.slash(name="ping")
 async def _ping(ctx):
