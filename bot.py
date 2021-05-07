@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from discord import *
 from discord.ext import commands
 from discord_slash import SlashCommand
+from discord_slash.utils.manage_commands import create_option
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -25,9 +26,14 @@ testServers = [738488607261851748, 674791516249653277, 814158378653712455, 76558
 async def _ping(ctx):
     await ctx.send(f"Pong! ({bot.latency*1000}ms)")
 
-@slash.slash(name="hello", guild_ids=testServers)
+@slash.slash(name="hello", guild_ids=testServers, description="Say hello to Joe",
 async def hello(ctx):
     await ctx.send("Hello Joe!")
+
+@slash.slash(name="test",
+
+async def test(ctx, optone: str):
+  await ctx.send(content=f"I got you, you said {optone}!")
 
 @slash.slash(name="anothertest", guild_ids=testServers)
 async def anothertest(ctx):
