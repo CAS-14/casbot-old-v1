@@ -26,7 +26,7 @@ testServers = [738488607261851748, 674791516249653277, 814158378653712455, 76558
 async def _ping(ctx):
     await ctx.send(f"Pong! ({bot.latency*1000}ms)")
 
-@slash.slash(name="hello", guild_ids=testServers, description="Say hello to Joe",
+@slash.slash(name="hello", guild_ids=testServers, description="Say hello to Joe")
 async def hello(ctx):
     await ctx.send("Hello Joe!")
 
