@@ -11,7 +11,14 @@ from discord_slash.utils.manage_commands import create_option
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-bot = commands.Bot(command_prefix='c!')
+versionName = "v26"
+
+activity = Game(name=versionName)
+# activity = Streaming(name="!help", url="twitch_url_here")
+# activity = Activity(type=ActivityType.listening, name="!help")
+# activity = Activity(type=ActivityType.watching, name="!help")
+
+bot = commands.Bot(command_prefix='c!', activity=activity, status=Status.idle)
 client = Client(intents=Intents.all())
 slash = SlashCommand(client, sync_commands=True)
 
