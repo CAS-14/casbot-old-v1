@@ -13,7 +13,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='c!')
 client = Client(intents=Intents.all())
-slash = SlashCommand(bot, sync_commands=True)
+slash = SlashCommand(client, sync_commands=True)
 
 # 738488607261851748 Awesome Realm Official
 # 674791516249653277 CAS Testing Server
