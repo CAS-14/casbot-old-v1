@@ -17,7 +17,8 @@ slash = SlashCommand(bot, sync_commands=True)
 # 738488607261851748 Awesome Realm Official
 # 674791516249653277 CAS Testing Server
 # 814158378653712455 Chez Cult Remastered
-testServers = [738488607261851748, 674791516249653277, 814158378653712455]
+# 765588555010670654 aki's emporium
+testServers = [738488607261851748, 674791516249653277, 814158378653712455, 765588555010670654]
 
 @slash.slash(name="ping")
 async def _ping(ctx):
@@ -26,6 +27,10 @@ async def _ping(ctx):
 @slash.slash(name="hello", guild_ids=testServers)
 async def hello(ctx):
     await ctx.send("Hello Joe!")
+
+@slash.slash(name="anothertest", guild_ids=testServers)
+async def anothertest(ctx):
+    await ctx.send("efjwefiuwhe")
 
 @bot.command(name='senkobread')
 async def senko(ctx):
