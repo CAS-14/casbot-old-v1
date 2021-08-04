@@ -13,7 +13,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 # TOKEN = "MANUAL OVERRIDE"
 
 prefix = 'c!'
-gameStatus = "amogus"
+gameStatus = "x"
 
 activity = Game(name=gameStatus)
 # activity = Streaming(name="c!help", url="twitch_url_here")
