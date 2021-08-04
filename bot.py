@@ -2,15 +2,14 @@
 import os
 import random
 
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from discord import *
 from discord.ext import commands
 # from discord_slash import SlashCommand
 # from discord_slash.utils.manage_commands import create_option
 
-# load_dotenv()
-TOKEN = "NzY5MjYzODkwODczMDU3NDAx.X5Me0w.gsH7vHhmgua2IIGBzzYJZzlkEdo"
-
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
 
 gameStatus = "raid shadow legends"
 
