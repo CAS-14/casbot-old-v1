@@ -10,6 +10,7 @@ from discord.ext import commands
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+# TOKEN = "MANUAL OVERRIDE"
 
 gameStatus = "raid shadow legends"
 
