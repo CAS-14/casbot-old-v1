@@ -12,10 +12,10 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 # TOKEN = "MANUAL OVERRIDE"
 
-gameStatus = "raid shadow legends"
+gameStatus = "amogus"
 
 activity = Game(name=gameStatus)
-# activity = Streaming(name="!help", url="twitch_url_here")
+# activity = Streaming(name="c!help", url="twitch_url_here")
 # activity = Activity(type=ActivityType.listening, name="!help")
 # activity = Activity(type=ActivityType.watching, name="!help")
 
@@ -25,7 +25,9 @@ client = Client(intents=Intents.all())
 
 # 738488607261851748 Awesome Realm Official
 # 674791516249653277 CAS Testing Server
-testServers = [738488607261851748, 674791516249653277]
+testServers = [738488607261851748, 
+               674791516249653277]
+bot_masters = [642527833410895882]
 
 @bot.command(name='senkobread')
 async def senko(ctx):
@@ -36,5 +38,12 @@ async def embedtest(ctx):
     colorcode = int("0x%02x%02x%02x" % (random.randint(0,255), random.randint(0,255), random.randint(0,255)), 16)
     testembed = Embed(title="Test Title",description="Test Description",color=colorcode)
     await ctx.send(embed=testembed)
+
+@bot.command(name='botactivity')
+async def changeactivity(ctx, type, *, status):
+    if ctx.author.id in bot_masters:
+        await ctx.send("Access granted.")
+    else:
+        await ctx.send("Access denied.")
 
 bot.run(TOKEN)
