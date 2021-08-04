@@ -2,14 +2,15 @@
 import os
 import random
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from discord import *
 from discord.ext import commands
-from discord_slash import SlashCommand
-from discord_slash.utils.manage_commands import create_option
+# from discord_slash import SlashCommand
+# from discord_slash.utils.manage_commands import create_option
 
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+# load_dotenv()
+TOKEN = "NzY5MjYzODkwODczMDU3NDAx.X5Me0w.gsH7vHhmgua2IIGBzzYJZzlkEdo"
+
 
 gameStatus = "raid shadow legends"
 
@@ -20,7 +21,7 @@ activity = Game(name=gameStatus)
 
 bot = commands.Bot(command_prefix='c!', activity=activity, status=Status.idle)
 client = Client(intents=Intents.all())
-slash = SlashCommand(client, sync_commands=True)
+# slash = SlashCommand(client, sync_commands=True)
 
 # 738488607261851748 Awesome Realm Official
 # 674791516249653277 CAS Testing Server
