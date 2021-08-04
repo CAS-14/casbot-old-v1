@@ -43,6 +43,7 @@ async def embedtest(ctx):
 @bot.command(name='botactivity')
 async def changeactivity(ctx, *args):
     if ctx.author.id in bot_masters:
+        await ctx.send(args)
         try:
             status_type = args[0]
             new_status = ' '.join(args[1, (len(args) - 1)])
