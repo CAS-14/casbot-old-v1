@@ -46,14 +46,14 @@ async def changeactivity(ctx, *args):
         try:
             status_type = args[0]
             new_status = ' '.join(args[1, (len(args) - 1)])
-        except KeyError:
+        except:
             await ctx.send(embed=Embed(title="Error",description=f"Not enough arguments\n\nProper command format: `{prefix}botactivity <status type> <status>`\nStatus type: `playing`, `streaming`, `listening`, `watching`", color=0xff0000))
         else:
             if status_type == "playing":
                 await bot.change_presence(activity=Game(name=new_status))
                 await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Playing {new_status}\".", color=0x00ff00))
             elif status_type == "streaming":
-                await bot.change_presence(activity=Streaming(name=new_status, url=None))
+                await bot.change_presence(activity=Streaming(name=new_status, url="https://twitch.tv"))
                 await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Streaming {new_status}\".", color=0x00ff00))
             elif status_type == "listening":
                 await bot.change_presence(activity=Activity(type=ActivityType.listening, name=new_status))
