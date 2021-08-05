@@ -45,10 +45,9 @@ async def changeactivity(ctx, *args):
     if ctx.author.id in bot_masters:
         args = list(args)
         await ctx.send(args)
-        await ctx.send(args[1, (len(args) - 1)])
         try:
             status_type = args[0]
-            new_status = ' '.join(args[1, (len(args) - 1)])
+            new_status = ' '.join(args[1:])
         except:
             await ctx.send(embed=Embed(title="Error",description=f"Not enough arguments\n\nProper command format: `{prefix}botactivity <status type> <status>`\nStatus type: `playing`, `streaming`, `listening`, `watching`", color=0xff0000))
         else:
