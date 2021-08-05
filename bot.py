@@ -56,11 +56,11 @@ async def changeactivity(ctx, *args):
                     await bot.change_presence(activity=Game(name=new_status))
                     await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Playing {new_status}\".", color=0x00ff00))
                 elif status_type == "streaming":
-                    await bot.change_presence(activity=Streaming(name=new_status))
+                    await bot.change_presence(activity=Streaming(name=new_status, url="https://google.com"))
                     await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Streaming {new_status}\".", color=0x00ff00))
                 elif status_type == "listening":
                     await bot.change_presence(activity=Activity(type=ActivityType.listening, name=new_status))
-                    await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Listening {new_status}\".", color=0x00ff00))
+                    await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Listening to {new_status}\".", color=0x00ff00))
                 elif status_type == "watching":
                     await bot.change_presence(activity=Activity(type=ActivityType.watching, name=new_status))
                     await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Watching {new_status}\".", color=0x00ff00))
