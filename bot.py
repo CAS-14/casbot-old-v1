@@ -56,7 +56,7 @@ async def changeactivity(ctx, *args):
                     await bot.change_presence(activity=Game(name=new_status))
                     await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Playing {new_status}\".", color=0x00ff00))
                 elif status_type == "streaming":
-                    await bot.change_presence(activity=Streaming(name=new_status, url="https://twitch.tv"))
+                    await bot.change_presence(activity=Streaming(name=new_status))
                     await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Streaming {new_status}\".", color=0x00ff00))
                 elif status_type == "listening":
                     await bot.change_presence(activity=Activity(type=ActivityType.listening, name=new_status))
