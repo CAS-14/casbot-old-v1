@@ -20,7 +20,7 @@ gameStatus = ""
 # activity = Activity(type=ActivityType.listening, name="!help")
 # activity = Activity(type=ActivityType.watching, name="!help")
 
-bot = commands.Bot(command_prefix=prefix, activity=activity, status=Status.idle)
+bot = commands.Bot(command_prefix=prefix, status=Status.idle)
 client = Client(intents=Intents.all())
 # slash = SlashCommand(client, sync_commands=True)
 
