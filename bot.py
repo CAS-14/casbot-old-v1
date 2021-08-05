@@ -51,21 +51,24 @@ async def changeactivity(ctx, *args):
         except:
             await ctx.send(embed=Embed(title="Error",description=f"Not enough arguments\n\nProper command format: `{prefix}botactivity <status type> <status>`\nStatus type: `playing`, `streaming`, `listening`, `watching`", color=0xff0000))
         else:
-            if status_type == "playing":
-                await bot.change_presence(activity=Game(name=new_status))
-                await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Playing {new_status}\".", color=0x00ff00))
-            elif status_type == "streaming":
-                await bot.change_presence(activity=Streaming(name=new_status, url="https://twitch.tv"))
-                await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Streaming {new_status}\".", color=0x00ff00))
-            elif status_type == "listening":
-                await bot.change_presence(activity=Activity(type=ActivityType.listening, name=new_status))
-                await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Listening {new_status}\".", color=0x00ff00))
-            elif status_type == "watching":
-                await bot.change_presence(activity=Activity(type=ActivityType.watching, name=new_status))
-                await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Watching {new_status}\".", color=0x00ff00))
+            if len(args) > 1:
+                if status_type == "playing":
+                    await bot.change_presence(activity=Game(name=new_status))
+                    await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Playing {new_status}\".", color=0x00ff00))
+                elif status_type == "streaming":
+                    await bot.change_presence(activity=Streaming(name=new_status, url="https://twitch.tv"))
+                    await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Streaming {new_status}\".", color=0x00ff00))
+                elif status_type == "listening":
+                    await bot.change_presence(activity=Activity(type=ActivityType.listening, name=new_status))
+                    await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Listening {new_status}\".", color=0x00ff00))
+                elif status_type == "watching":
+                    await bot.change_presence(activity=Activity(type=ActivityType.watching, name=new_status))
+                    await ctx.send(embed=Embed(title="Success",description=f"Activity successfully changed to \"Watching {new_status}\".", color=0x00ff00))
+                else:
+                    await ctx.send(embed=Embed(title="Error",description=f"Improper arguments\n\nProper command format: `{prefix}botactivity <status type> <status>`\nStatus type: `playing`, `streaming`, `listening`, `watching`", color=0xff0000))
             else:
-                await ctx.send(embed=Embed(title="Error",description=f"Improper arguments\n\nProper command format: `{prefix}botactivity <status type> <status>`\nStatus type: `playing`, `streaming`, `listening`, `watching`", color=0xff0000))
-    
+                await ctx.send(embed=Embed(title="Error",description=f"Not enough arguments\n\nProper command format: `{prefix}botactivity <status type> <status>`\nStatus type: `playing`, `streaming`, `listening`, `watching`", color=0xff0000))
+            
     else:
         await ctx.send("Access denied. You must be a **Bot Master** to use this command.")
 
