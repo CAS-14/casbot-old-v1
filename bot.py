@@ -13,9 +13,9 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 # TOKEN = "MANUAL OVERRIDE"
 
 prefix = 'c!'
-gameStatus = "x"
+gameStatus = ""
 
-activity = Game(name=gameStatus)
+# activity = Game(name=gameStatus)
 # activity = Streaming(name="c!help", url="twitch_url_here")
 # activity = Activity(type=ActivityType.listening, name="!help")
 # activity = Activity(type=ActivityType.watching, name="!help")
