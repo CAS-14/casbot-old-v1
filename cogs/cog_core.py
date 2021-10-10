@@ -2,7 +2,7 @@ from discord import *
 from discord.ext import commands
 import random
 
-class Base(commands.Cog):
+class Main(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -16,8 +16,9 @@ class Base(commands.Cog):
         testembed = Embed(title="Test Title",description="Test Description",color=colorcode)
         await ctx.send(embed=testembed)
 
-def setup(bot):
-    bot.add_cog(Base(bot))
-    
+    @commands.command()
+    async def ping(self, ctx):
+        await ctx.send(f"CASbot ping: {round(self.bot.latency * 1000)}ms")
 
-    
+def setup(bot):
+    bot.add_cog(Main(bot))    
