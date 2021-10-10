@@ -12,12 +12,12 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix=config.prefix, status=Status.online)
 
-verbose_start = True
+verbose_start = False
 
 @bot.event
 async def on_ready():
     bt_channel = bot.get_channel(895359225553907792) # BOT-TESTING channel casbot
-    online_msg = await bt_channel.send(':cold_face: CASbot is online!')
+    online_msg = await bt_channel.send(':cold_face: CASbot is online!\n')
     
     exts = ['core', 'admin', 'test', 'tsys']
     for ext in exts:
