@@ -21,8 +21,8 @@ for ext in extensions:
 """
 
 bot.load_extension('cogs.cog_core')
-# bot.load_extension('cogs.cog_admin')
-# bot.load_extension('cogs.cog_test')
+bot.load_extension('cogs.cog_admin')
+bot.load_extension('cogs.cog_test')
 
 @bot.event
 async def on_ready():
