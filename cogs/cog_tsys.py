@@ -29,7 +29,7 @@ class TSys(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: Message):
-        if message.author.id == 786448912587948052: #dynamite14 [TEST]
+        if message.channel.id == 879364514255077447: # dynamite14 x casbot DM
             webhook1.send(message.content)
 
 def setup(bot):
