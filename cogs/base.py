@@ -7,11 +7,11 @@ class Base(commands.Cog):
         self.bot = bot
 
     @commands.command(name='senkobread')
-    async def senko(ctx):
+    async def senko(self, ctx):
         await ctx.send("https://cdn.discordapp.com/emojis/795829520162357298.png?v=1")
 
     @commands.command(name='embedtest')
-    async def embedtest(ctx):
+    async def embedtest(self, ctx):
         colorcode = int("0x%02x%02x%02x" % (random.randint(0,255), random.randint(0,255), random.randint(0,255)), 16)
         testembed = Embed(title="Test Title",description="Test Description",color=colorcode)
         await ctx.send(embed=testembed)
