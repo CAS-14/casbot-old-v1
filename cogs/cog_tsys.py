@@ -27,8 +27,7 @@ class TSys(commands.Cog):
         channel = self.bot.get_channel(tsys_GENERAL) # CC3 general
         await channel.send('**tSys** TO SERVER TEST: Hello World! :hamburger:')
 
-    @commands.Cog.listener()
-    async def on_message(self, receive_msg: Message):
+    async def on_message(self, receive_msg):
         bt_channel = self.bot.get_channel(895359225553907792) # BOT-TESTING channel casbot
         # online_msg = await bt_channel.send('This worked!')
 
