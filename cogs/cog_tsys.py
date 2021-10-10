@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 import cogs.config as config
 
-URL_1 = os.getenv('tSys-URL-1')
+URL_1 = os.getenv('TSYS_URL_1')
 webhook1 = Webhook.from_url(URL_1, adapter=RequestsWebhookAdapter())
 
 # 879364514255077447 dynamite14
