@@ -1,6 +1,6 @@
 from discord import *
 from discord.ext import commands
-import cogs.config as conf
+import cogs.config as config
 
 class Test(commands.Cog):
     def __init__(self, bot):
@@ -12,7 +12,7 @@ class Test(commands.Cog):
 
     @commands.command()
     async def configtest(self, ctx):
-        await ctx.send("Test variable: "+conf.testvar)
+        await ctx.send("Test variable: "+config.testvar)
 
 def setup(bot):
     bot.add_cog(Test(bot))
