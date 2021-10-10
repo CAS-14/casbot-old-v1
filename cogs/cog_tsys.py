@@ -30,8 +30,18 @@ class TSys(commands.Cog):
     # forward DMs from target to webhook
     @commands.Cog.listener()
     async def on_message(self, message: Message):
-        if message.channel.id == 879364514255077447: # dynamite14 x casbot DM
+        if message.author.id == 879364514255077447 and message.guild.id is None: # dynamite14 x casbot DM
             webhook1.send(message.content)
+
+    # forward all messages from CC3 to DMs
+    @commands.Cog.listener()
+    async def on_message(self, message: Message):
+        if message.channel.id == 814158379207491616: # CC3 general
+            channel = self.bot.get_channel(879364514255077447) # dynamite14 x casbot DM
+            embed = Embed(title="toriSys", color=message.author.color, description=message.content)
+            embed.set_author(name=message.author.name, icon_url=message.author.avatar_url)
+            embed.set_footer(text="{message.channel.name} in {message.guild.name}", icon_url=message.guild.icon_url)
+
 
 def setup(bot):
     bot.add_cog(TSys(bot))
