@@ -1,3 +1,5 @@
+# Make sure to update all values in bot.py
+
 prefix = 'c!'
 
 testServers = [895356775941939262] # BOT-TESTING
