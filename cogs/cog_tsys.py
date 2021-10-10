@@ -30,7 +30,7 @@ class TSys(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message: Message):
         bt_channel = self.bot.get_channel(895359225553907792) # BOT-TESTING channel casbot
-        online_msg = await bt_channel.send('This worked!')
+        # online_msg = await bt_channel.send('This worked!')
 
         await self.bot.add_reaction(message, ':white_check_mark:')
 
