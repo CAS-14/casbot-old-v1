@@ -27,18 +27,14 @@ class TSys(commands.Cog):
         channel = self.bot.get_channel(tsys_GENERAL) # CC3 general
         await channel.send('**tSys** TO SERVER TEST: Hello World! :hamburger:')
 
-    # forward DMs from target to webhook
     @commands.Cog.listener()
     async def on_message(self, message: Message):
-        if message.author.id == tsys_USER and message.guild.id is None and not message.author.bot: # dynamite14 user ID
-            try:
-                webhook1.send(message.content)
-            except Exception as err:
-                message.channel.send(f":x: **Error:**\n```{err}\n```")
+        bt_channel = self.bot.get_channel(895359225553907792) # BOT-TESTING channel casbot
+        online_msg = await bt_channel.send('This worked!')
 
-    # forward all messages from CC3 to DMs
-    @commands.Cog.listener()
-    async def on_message(self, message: Message):
+        await self.bot.add_reaction(message, ':white_check_mark:')
+
+        # forward all messages from CC3 general to DMs
         if message.channel.id == tsys_GENERAL and not message.author.bot: # CC3 general
             try:
                 target_user = self.bot.get_user(tsys_USER) # dynamite14
@@ -49,6 +45,16 @@ class TSys(commands.Cog):
                 target_user.send(embed=tsys_frd)
             except Exception as err:
                 message.channel.send(f":x: **Error:**\n```{err}\n```")
+
+        # forward messages from bot DMs to CC3 generl
+        elif message.author.id == tsys_USER and message.guild.id is None and not message.author.bot: # dynamite14 user ID
+            try:
+                webhook1.send(message.content)
+            except Exception as err:
+                message.channel.send(f":x: **Error:**\n```{err}\n```")
+
+        else:
+            pass
 
 
 def setup(bot):
