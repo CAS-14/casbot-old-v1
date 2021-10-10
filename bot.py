@@ -12,11 +12,17 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 # activity = Activity(type=ActivityType.watching, name="!help")
 
 bot = commands.Bot(command_prefix='c!', status=Status.idle)
-client = Client(intents=Intents.all())
+# client = Client(intents=Intents.all())
 
+"""
 extensions = ['admin', 'core', 'test']
 for ext in extensions:
     bot.load_extension('cogs.cog_'+ext)
+"""
+
+bot.load_extension('cogs.cog_core')
+# bot.load_extension('cogs.cog_admin')
+# bot.load_extension('cogs.cog_test')
 
 @bot.event
 async def on_ready():
