@@ -23,8 +23,8 @@ async def on_ready():
     for ext in exts:
         try:
             bot.load_extension('cogs.cog_'+ext)
-            await online_msg.edit(content=f'\n:white_check_mark: Cog extension `{ext}` loaded successfully!') if verbose_start else None
+            await online_msg.edit(content = online_msg.content + f'\n:white_check_mark: Cog extension `{ext}` loaded successfully!') if verbose_start else None
         except Exception as err:
-            await online_msg.edit(content=f'\n:warning: Could not load cog extension`{ext}`. Error:\n{err}')
+            await online_msg.edit(content = online_msg.content + f'\n:warning: Could not load cog extension `{ext}`.\n```\n{err}\n```')
 
 bot.run(TOKEN)
