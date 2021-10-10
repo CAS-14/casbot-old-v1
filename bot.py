@@ -21,14 +21,19 @@ for ext in extensions:
     bot.load_extension('cogs.cog_'+ext)
 """
 
-bot.load_extension('cogs.cog_core')
-bot.load_extension('cogs.cog_admin')
-bot.load_extension('cogs.cog_test')
-bot.load_extension('cogs.cog_tsys')
+verbose_start = True
 
 @bot.event
 async def on_ready():
-    channel = bot.get_channel(895359225553907792) # BOT-TESTING channel casbot
-    await channel.send(':cold_face: CASbot is online!')
+    bt_channel = bot.get_channel(895359225553907792) # BOT-TESTING channel casbot
+    await bt_channel.send(':cold_face: CASbot is online!')
+    
+    exts = ['core', 'admin', 'test', 'tsys']
+    for ext in exts:
+        try:
+            bot.load_extension('cogs.cog_'+ext)
+            await bt_channel.send(':white_checkmark: Cog extension `{ext}` loaded successfully!') if verbose_start else None
+        except Exception as err:
+            await bt_channel.send(':warning: Could not load cog extension`{ext}`. Error:\n{err}')
 
 bot.run(TOKEN)
