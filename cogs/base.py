@@ -16,6 +16,8 @@ class Base(commands.Cog):
         testembed = Embed(title="Test Title",description="Test Description",color=colorcode)
         await ctx.send(embed=testembed)
 
+def setup(bot):
+    bot.add_cog(Base(bot))
     
 
     

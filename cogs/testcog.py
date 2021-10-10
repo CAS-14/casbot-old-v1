@@ -9,4 +9,5 @@ class TestCog(commands.Cog):
     async def cogtest(self, ctx):
         await ctx.send(":white_check_mark: Test suceeded.")
 
-    
+def setup(bot):
+    bot.add_cog(TestCog(bot))

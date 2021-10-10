@@ -68,8 +68,12 @@ async def changeactivity(ctx, *args):
         await ctx.send(":x: Access denied. You must be a **Bot Master** to use this command.")
 
 bot.load_extension("cogs.base")
-bot.add_cog(Base(bot))
 bot.load_extension("cogs.testcog")
-bot.add_cog(TestCog(bot))
+
+@bot.event
+async def on_ready():
+    channel = bot.get_channel(895359225553907792)
+    await channel.send(':cold_face: CASbot is online!')
+
 
 bot.run(TOKEN)
