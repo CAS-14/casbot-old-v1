@@ -27,30 +27,31 @@ class TSys(commands.Cog):
         channel = self.bot.get_channel(tsys_GENERAL) # CC3 general
         await channel.send('**tSys** TO SERVER TEST: Hello World! :hamburger:')
 
-    async def on_message(self, receive_msg):
+    @commands.Cog.listener()
+    async def on_message(self, message):
         bt_channel = self.bot.get_channel(895359225553907792) # BOT-TESTING channel casbot
         # online_msg = await bt_channel.send('This worked!')
 
-        await self.bot.add_reaction(receive_msg, ':white_check_mark:')
+        await self.bot.add_reaction(message, ':white_check_mark:')
 
         # forward all messages from CC3 general to DMs
-        if receive_msg.channel.id == tsys_GENERAL and not receive_msg.author.bot: # CC3 general
+        if message.channel.id == tsys_GENERAL and not message.author.bot: # CC3 general
             try:
                 target_user = self.bot.get_user(tsys_USER) # dynamite14
 
-                tsys_frd = Embed(title="toriSys", color=receive_msg.author.color, description=receive_msg.content)
-                tsys_frd.set_author(name=receive_msg.author.name, icon_url=receive_msg.author.avatar_url)
-                tsys_frd.set_footer(text=f"{receive_msg.channel.name} in {receive_msg.guild.name}", icon_url=receive_msg.guild.icon_url)
+                tsys_frd = Embed(title="toriSys", color=message.author.color, description=message.content)
+                tsys_frd.set_author(name=message.author.name, icon_url=message.author.avatar_url)
+                tsys_frd.set_footer(text=f"{message.channel.name} in {message.guild.name}", icon_url=message.guild.icon_url)
                 target_user.send(embed=tsys_frd)
             except Exception as err:
-                receive_msg.channel.send(f":x: **Error:**\n```{err}\n```")
+                message.channel.send(f":x: **Error:**\n```{err}\n```")
 
         # forward messages from bot DMs to CC3 generl
-        elif receive_msg.author.id == tsys_USER and receive_msg.guild.id is None and not receive_msg.author.bot: # dynamite14 user ID
+        elif message.author.id == tsys_USER and message.guild.id is None and not message.author.bot: # dynamite14 user ID
             try:
-                webhook1.send(receive_msg.content)
+                webhook1.send(message.content)
             except Exception as err:
-                receive_msg.channel.send(f":x: **Error:**\n```{err}\n```")
+                message.channel.send(f":x: **Error:**\n```{err}\n```")
 
         else:
             pass
