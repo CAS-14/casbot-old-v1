@@ -1,7 +1,7 @@
 from discord import *
 from discord.ext import commands
 
-class TestCog(commands.Cog):
+class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -10,4 +10,4 @@ class TestCog(commands.Cog):
         await ctx.send(":white_check_mark: Test suceeded.")
 
 def setup(bot):
-    bot.add_cog(TestCog(bot))
+    bot.add_cog(Test(bot))
