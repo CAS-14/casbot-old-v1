@@ -23,7 +23,7 @@ async def on_ready():
     for ext in exts:
         try:
             bot.load_extension('cogs.cog_'+ext)
-            await bt_channel.send(f':white_checkmark: Cog extension `{ext}` loaded successfully!') if verbose_start else None
+            await bt_channel.send(f':white_check_mark: Cog extension `{ext}` loaded successfully!') if verbose_start else None
         except Exception as err:
             await bt_channel.send(f':warning: Could not load cog extension`{ext}`. Error:\n{err}')
 
