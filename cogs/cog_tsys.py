@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 import cogs.config as config
 
-URL_1 = os.getenv('TSYS_URL_1')
+URL_1 = os.getenv('TSYS_URL_ONE')
 webhook1 = Webhook.from_url(URL_1, adapter=RequestsWebhookAdapter())
 
 # 879364514255077447 dynamite14
@@ -27,6 +27,7 @@ class TSys(commands.Cog):
         channel = self.bot.get_channel(814158379207491616) # CC3 general
         await channel.send('**tSys** TO SERVER TEST: Hello World! :hamburger:')
 
+    # forward DMs from target to webhook
     @commands.Cog.listener()
     async def on_message(self, message: Message):
         if message.channel.id == 879364514255077447: # dynamite14 x casbot DM
