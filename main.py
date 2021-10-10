@@ -1,6 +1,5 @@
 # bot.py
 import os
-from dotenv import load_dotenv
 from discord import *
 from discord.ext import commands
 
@@ -17,23 +16,11 @@ gameStatus = ""
 
 bot = commands.Bot(command_prefix=prefix, status=Status.idle)
 client = Client(intents=Intents.all())
-# slash = SlashCommand(client, sync_commands=True)
 
-# 738488607261851748 Awesome Realm Official
-# 674791516249653277 CAS Testing Server
-testServers = [738488607261851748, 
-               674791516249653277]
+testServers = [895356775941939262] # BOT-TESTING
 
-bot_owners  = [642527833410895882]
-
-bot_masters = [642527833410895882]
-
-with open("botmasters.txt", "r") as f:
-    bot_masters = []
-    bot_masters_str = f.readlines()
-
-for userid in bot_masters_str:
-    bot_masters.append(int(userid))
+bot_owners  = [786448912587948052]
+bot_masters = [786448912587948052]
 
 @bot.command(name='botactivity')
 async def changeactivity(ctx, *args):

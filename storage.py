@@ -1,3 +1,4 @@
+'''
 @commands.command(name='botmaster')
     async def managemasters(ctx, *args):
         if ctx.author.id in bot_owners:
@@ -37,3 +38,4 @@
 
         else:
             await ctx.send(":x: Access denied. You must be a **Bot Owner** to use this command.")
+'''
