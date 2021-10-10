@@ -67,9 +67,9 @@ async def changeactivity(ctx, *args):
     else:
         await ctx.send(":x: Access denied. You must be a **Bot Master** to use this command.")
 
-bot.load_extension("cogs/base")
+bot.load_extension("cogs.base")
 bot.add_cog(Base(bot))
-bot.load_extension("cogs/testcog")
+bot.load_extension("cogs.testcog")
 bot.add_cog(TestCog(bot))
 
 bot.run(TOKEN)
