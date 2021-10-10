@@ -32,8 +32,12 @@ class TSys(commands.Cog):
         bt_channel = self.bot.get_channel(895359225553907792) # BOT-TESTING channel casbot
         # online_msg = await bt_channel.send('This worked!')
 
-        await self.bot.add_reaction(message, ':white_check_mark:')
+        try:
+            await self.bot.add_reaction(message, ':white_check_mark:')
+        except Exception as err:
+            await bt_channel.send("ERROR: "+err)
 
+        '''
         # forward all messages from CC3 general to DMs
         if message.channel.id == tsys_GENERAL and not message.author.bot: # CC3 general
             try:
@@ -55,6 +59,7 @@ class TSys(commands.Cog):
 
         else:
             pass
+        '''
 
 
 def setup(bot):
