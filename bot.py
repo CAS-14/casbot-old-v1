@@ -2,6 +2,7 @@
 import os
 from discord import *
 from discord.ext import commands
+import cogs.config as config
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 # TOKEN = "MANUAL OVERRIDE"
@@ -11,7 +12,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 # activity = Activity(type=ActivityType.listening, name="!help")
 # activity = Activity(type=ActivityType.watching, name="!help")
 
-bot = commands.Bot(command_prefix='c!', status=Status.idle)
+bot = commands.Bot(command_prefix=config.prefix, status=Status.online)
 # client = Client(intents=Intents.all())
 
 """
@@ -21,7 +22,7 @@ for ext in extensions:
 """
 
 bot.load_extension('cogs.cog_core')
-# bot.load_extension('cogs.cog_admin')
+bot.load_extension('cogs.cog_admin')
 bot.load_extension('cogs.cog_test')
 
 @bot.event

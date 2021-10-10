@@ -1,7 +1,6 @@
 from discord import *
 from discord.ext import commands
-
-import config
+import cogs.config as config
 
 class Admin(commands.Cog):
     def __init__(self, bot):
