@@ -10,3 +10,5 @@ bot_masters = [786448912587948052]
 channel_ids = {'BT-casbot'          : 895359225553907792,
                'CC3-general'        : 814158379207491616,
                'CC3-bot-commands'   : 814158830392311838}
+
+testvar = "cheezburger"
