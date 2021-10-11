@@ -37,7 +37,6 @@ class TSys(commands.Cog):
         except Exception as err:
             await bt_channel.send("ERROR: "+err)
 
-        '''
         # forward all messages from CC3 general to DMs
         if message.channel.id == tsys_GENERAL and not message.author.bot: # CC3 general
             try:
@@ -51,7 +50,7 @@ class TSys(commands.Cog):
                 message.channel.send(f":x: **Error:**\n```{err}\n```")
 
         # forward messages from bot DMs to CC3 generl
-        elif message.author.id == tsys_USER and message.guild.id is None and not message.author.bot: # dynamite14 user ID
+        elif message.author.id == tsys_USER and not message.guild and not message.author.bot: # dynamite14 user ID
             try:
                 webhook1.send(message.content)
             except Exception as err:
@@ -59,8 +58,6 @@ class TSys(commands.Cog):
 
         else:
             pass
-        '''
-
 
 def setup(bot):
     bot.add_cog(TSys(bot))

@@ -12,3 +12,5 @@ channel_ids = {'BT-casbot'          : 895359225553907792,
                'CC3-bot-commands'   : 814158830392311838}
 
 testvar = "cheezburger"
+
+cog_exts = ['core', 'admin', 'test', 'tsys']

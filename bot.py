@@ -19,8 +19,7 @@ async def on_ready():
     bt_channel = bot.get_channel(895359225553907792) # BOT-TESTING channel casbot
     online_msg = await bt_channel.send(':cold_face: CASbot is online!\n')
     
-    exts = ['core', 'admin', 'test', 'tsys']
-    for ext in exts:
+    for ext in config.cog_exts:
         try:
             bot.load_extension('cogs.cog_'+ext)
             await online_msg.edit(content = online_msg.content + f'\n:white_check_mark: Cog extension `{ext}` loaded successfully!') if verbose_start else None

@@ -37,6 +37,18 @@ class Admin(commands.Cog):
                 
         else:
             await ctx.send(":x: Access denied. You must be a **Bot Master** to use this command.")
+    
+    """ UNFINISHED
+    @commands.command()
+    async def cog(self, ctx, *args):
+        if ctx.author.id in config.bot_masters:
+            args = list(args)
+            try:
+                operation = args[0]
+                target_ext = args[1]
+            except:
+                 await ctx.send(embed=Embed(title="Error",description=f"Not enough arguments\n\nProper command format: `{config.prefix}botactivity <status type> <status>`\nStatus type: `playing`, `streaming`, `listening`, `watching`", color=0xff0000))
+"""
 
 def setup(bot):
     bot.add_cog(Admin(bot))
