@@ -3,6 +3,10 @@ from discord.ext import commands
 import os
 import cogs.config as config
 
+'''
+!!! Development of tSys has been cancelled for the foreseeable future.
+'''
+
 URL_1 = 'https://canary.discord.com/api/webhooks/896608021432631316/20LF9S9UFd5oV86J-tx6LdSMaP71PsOKzjtn69_AAg9uc4twZIb3It4JjJd1kVXdJzNv'
 webhook1 = Webhook.from_url(URL_1, adapter=RequestsWebhookAdapter())
 
