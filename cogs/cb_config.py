@@ -1,16 +1,5 @@
 # Make sure to update all values in bot.py
-
-def checkMaster(userid):
-    if userid in bot_masters:
-        return True
-    else:
-        return False
-
-def checkOwner(userid):
-    if userid in bot_owners:
-        return True
-    else:
-        return False
+from cb_utility import *
 
 prefix = 'c!'
 

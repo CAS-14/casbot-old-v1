@@ -1,7 +1,7 @@
 from discord import *
 from discord.ext import commands
 import os
-import cogs.config as config
+import cogs.cb_config as config
 
 '''
 !!! Development of tSys has been cancelled for the foreseeable future.

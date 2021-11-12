@@ -1,6 +1,6 @@
 from discord import *
 from discord.ext import commands
-import cogs.config as config
+import cogs.cb_config as config
 
 class Test(commands.Cog):
     def __init__(self, bot):

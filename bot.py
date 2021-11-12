@@ -1,7 +1,7 @@
 import os
 from discord import *
 from discord.ext import commands
-import cogs.config as config
+import cogs.cb_config as config
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 
