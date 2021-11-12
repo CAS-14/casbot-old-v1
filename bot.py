@@ -16,15 +16,18 @@ verbose_start = False
 
 @bot.event
 async def on_ready():
+    bt_channel = bot.get_channel(util.channel_ids['BT-casbot']) 
+
     try:
         main_storage = util.storage_message(bot, 'rel_ver')
         release_ver = int(main_storage.content.replace("release version ", '')) + 1
         await main_storage.edit(content="release version "+str(release_ver))
-    except:
+    except Exception as e:
+        err = e
         release_ver = None
 
-    bt_channel = bot.get_channel(util.channel_ids['BT-casbot'])
     online_msg = await bt_channel.send(':cold_face: CASbot is online! rv '+str(release_ver))
+    await online_msg.edit(content = online_msg.content + f'\n:warning: Error.\n```\n{err}\n```') if err else None
 
     for ext in util.cog_exts:
         try:
