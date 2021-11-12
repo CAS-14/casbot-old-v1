@@ -22,8 +22,9 @@ channel_ids = {'BT-casbot'          : 895359225553907792,
                'CC3-general'        : 814158379207491616,
                'CC3-bot-commands'   : 814158830392311838}
 
+# CHANNEL is a channel ID, others are message IDs
 free_storage = {'CHANNEL' : 896612054423703583,
-                'msg_main' : None}
+                'main' : None}
 
 testvar = "cheezburger"
 
