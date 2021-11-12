@@ -81,6 +81,38 @@ class Admin(commands.Cog):
             except Exception as e:
                 await ctx.send(embed=Embed(title="CODE Error",description=f"`{e}`", color=0xff0000))
 
+    @commands.command()
+    async def message(self, ctx, *args):
+        if not util.checkOwner(ctx.author.id):
+            await ctx.send(":x: Access denied. You must be a **Bot Master** to use this command.")
+            return
+
+        args = list(args)
+        try:
+            operation = args[0]
+            channel_id = int(args[1])
+            message_id = int(args[2])
+            try:
+                new_content = ' '.join(args[3:])
+            except:
+                new_content = False
+        except:
+            await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}message <operation> <channel ID> <message ID> [edited content]`\nOperation Type: `edit`, `delete`", color=0xff0000))
+            return
+        
+        target_channel = self.bot.get_channel(channel_id)
+        target_message = target_channel.fetch_message(message_id)
+
+        if operation == 'edit':
+            if new_content:
+                await target_message.edit(new_content)
+            else:
+                await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}sendmanual <channel ID> <message>`", color=0xff0000))
+        elif operation == 'delete':
+            await target_message.delete()
+        else:
+            await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}sendmanual <channel ID> <message>`", color=0xff0000))
+
 
 def setup(bot):
     bot.add_cog(Admin(bot))
