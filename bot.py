@@ -19,9 +19,11 @@ async def on_ready():
     bt_channel = bot.get_channel(util.channel_ids['BT-casbot']) 
 
     try:
-        main_storage = await util.get_storage_message(bot, 'rel_ver')
-        release_ver = int(main_storage.content.replace("release version ", '')) + 1
-        await main_storage.edit(content="release version "+str(release_ver))
+        storage_channel = await bot.get_channel(util.free_storage['CHANNEL'])
+        storage_message = await storage_channel.fetch_message(util.free_storage['rel_ver'])
+
+        release_ver = int(storage_message.content.replace("release version ", '')) + 1
+        await storage_message.edit(content="release version "+str(release_ver))
     except Exception as e:
         err = e
         release_ver = None
