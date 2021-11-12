@@ -48,12 +48,12 @@ class Admin(commands.Cog):
                 return
 
             try:
-                exec(args)
+                exec(''.join(args))
             except Exception as e:
                 await ctx.send("`CODE ERROR`\n```\n"+str(e)+"\n```")
             else:
                 await ctx.send(":white_check_mark: Code ran successfully.")
-                
+
         except Exception as e:
             await ctx.send(str(e))
     
