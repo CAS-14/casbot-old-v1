@@ -17,10 +17,8 @@ class Admin(commands.Cog):
         try:
             status_type = args[0]
             new_status = ' '.join(args[1:])
-
         except:
             await ctx.send(embed=Embed(title="Error",description=f"Not enough arguments\n\nProper command format: `{config.prefix}botactivity <status type> <status>`\nStatus type: `playing`, `streaming`, `listening`, `watching`", color=0xff0000))
-        
         else:
             if len(args) > 1:
                 if status_type == "playing":
@@ -57,17 +55,23 @@ class Admin(commands.Cog):
         except Exception as e:
             await ctx.send(str(e))
     
-    """ UNFINISHED
     @commands.command()
-    async def cog(self, ctx, *args):
-        if ctx.author.id in config.bot_masters:
-            args = list(args)
-            try:
-                operation = args[0]
-                target_ext = args[1]
-            except:
-                 await ctx.send(embed=Embed(title="Error",description=f"Not enough arguments\n\nProper command format: `{config.prefix}botactivity <status type> <status>`\nStatus type: `playing`, `streaming`, `listening`, `watching`", color=0xff0000))
-"""
+    async def sendmanual(self, ctx, *args):
+        if not config.checkMaster(ctx.author.id):
+            await ctx.send(":x: Access denied. You must be a **Bot Master** to use this command.")
+            return
+        
+        args = list(args)
+        # await ctx.send(args)
+        try:
+            target_id = int(args[0])
+            msg_content = ' '.join(args[1:])
+        except:
+            await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{config.prefix}sendmanual <channel ID> <message>`", color=0xff0000))
+        else:
+            target_channel = self.bot.get_channel(target_id)
+            await target_channel.message.send(msg_content)
+
 
 def setup(bot):
     bot.add_cog(Admin(bot))
