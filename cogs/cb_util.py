@@ -28,7 +28,7 @@ channel_ids = {'BT-casbot'          : 895359225553907792,
 
 # CHANNEL is a channel ID, others are message IDs
 free_storage = {'CHANNEL' : 896612054423703583,
-                'rel_ver' : None}
+                'rel_ver' : 908838529092689981}
 
 testvar = "cheezburger"
 
