@@ -103,16 +103,19 @@ class Admin(commands.Cog):
         target_channel = self.bot.get_channel(channel_id)
         target_message = target_channel.fetch_message(message_id)
 
-        if operation == 'edit':
-            if new_content:
-                await target_message.edit(new_content)
+        try:
+            if operation == 'edit':
+                if new_content:
+                    await target_message.edit(new_content)
+                else:
+                    await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}sendmanual <channel ID> <message>`", color=0xff0000))
+            elif operation == 'delete':
+                await target_message.delete()
             else:
                 await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}sendmanual <channel ID> <message>`", color=0xff0000))
-        elif operation == 'delete':
-            await target_message.delete()
-        else:
-            await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}sendmanual <channel ID> <message>`", color=0xff0000))
-
+        
+        except Exception as e:
+            await ctx.send(embed=Embed(title="CODE Error",description=f"`{e}`", color=0xff0000))
 
 def setup(bot):
     bot.add_cog(Admin(bot))
