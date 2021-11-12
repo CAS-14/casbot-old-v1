@@ -42,16 +42,20 @@ class Admin(commands.Cog):
 
     @commands.command()
     async def runcode(self, ctx, *args):
-        if not config.checkOwner(ctx.author.id):
-            await ctx.send(":x: Access denied. You must be a **Bot Owner** (CAS) to use this command.")
-            return
-
         try:
-            exec(args)
-        except Exception as err:
-            await ctx.send("`CODE ERROR`\n```\n"+err+"\n```")
-        else:
-            await ctx.send(":white_check_mark: Code ran successfully.")
+            if not config.checkOwner(ctx.author.id):
+                await ctx.send(":x: Access denied. You must be a **Bot Owner** (CAS) to use this command.")
+                return
+
+            try:
+                exec(args)
+            except Exception as e:
+                await ctx.send("`CODE ERROR`\n```\n"+str(e)+"\n```")
+            else:
+                await ctx.send(":white_check_mark: Code ran successfully.")
+                
+        except Exception as e:
+            await ctx.send(str(e))
     
     """ UNFINISHED
     @commands.command()
