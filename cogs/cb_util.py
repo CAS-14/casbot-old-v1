@@ -11,6 +11,10 @@ def checkOwner(userid):
     else:
         return False
 
+def storage_message(bot, name):
+    storage_channel = bot.get_channel(free_storage['CHANNEL'])
+    return storage_channel.fetch_message(free_storage[name])
+
 prefix = 'c!'
 
 testServers = [895356775941939262] # BOT-TESTING
@@ -24,7 +28,7 @@ channel_ids = {'BT-casbot'          : 895359225553907792,
 
 # CHANNEL is a channel ID, others are message IDs
 free_storage = {'CHANNEL' : 896612054423703583,
-                'main' : None}
+                'rel_ver' : None}
 
 testvar = "cheezburger"
 

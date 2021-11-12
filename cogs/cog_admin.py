@@ -75,8 +75,11 @@ class Admin(commands.Cog):
         except:
             await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}sendmanual <channel ID> <message>`", color=0xff0000))
         else:
-            target_channel = self.bot.get_channel(target_id)
-            await target_channel.message.send(msg_content)
+            try:
+                target_channel = self.bot.get_channel(target_id)
+                await target_channel.message.send(msg_content)
+            except Exception as e:
+                await ctx.send(embed=Embed(title="CODE Error",description=f"`{e}`", color=0xff0000))
 
 
 def setup(bot):
