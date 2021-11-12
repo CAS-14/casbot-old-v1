@@ -106,7 +106,7 @@ class Admin(commands.Cog):
         try:
             if operation == 'edit':
                 if new_content:
-                    await target_message.edit(new_content)
+                    await target_message.edit(content=new_content)
                 else:
                     await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}sendmanual <channel ID> <message>`", color=0xff0000))
             elif operation == 'delete':
