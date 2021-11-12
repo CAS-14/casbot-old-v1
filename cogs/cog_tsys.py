@@ -1,7 +1,7 @@
 from discord import *
 from discord.ext import commands
 import os
-import cogs.cb_config as config
+import cogs.cb_util as util
 
 '''
 !!! Development of tSys has been cancelled for the foreseeable future.
@@ -19,7 +19,7 @@ class TSys(commands.Cog):
 
     @commands.command()
     async def tsys_status(self, ctx):
-        await ctx.send("**tSys** is configured for a TEST with `dynamite14#8880` (DMid `879364514255077447`)")
+        await ctx.send("**tSys** is utilured for a TEST with `dynamite14#8880` (DMid `879364514255077447`)")
 
     @commands.command()
     async def tsys_senddm(self, ctx):

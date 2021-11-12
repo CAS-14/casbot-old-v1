@@ -1,7 +1,7 @@
 import os
 from discord import *
 from discord.ext import commands
-import cogs.cb_config as config
+import cogs.cb_util as util
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 
@@ -10,7 +10,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 # activity = Activity(type=ActivityType.listening, name="!help")
 # activity = Activity(type=ActivityType.watching, name="!help")
 
-bot = commands.Bot(command_prefix=config.prefix, status=Status.online)
+bot = commands.Bot(command_prefix=util.prefix, status=Status.online)
 
 verbose_start = False
 
@@ -19,7 +19,7 @@ async def on_ready():
     bt_channel = bot.get_channel(895359225553907792) # BOT-TESTING channel casbot
     online_msg = await bt_channel.send(':cold_face: CASbot is online!\n')
     
-    for ext in config.cog_exts:
+    for ext in util.cog_exts:
         try:
             bot.load_extension('cogs.cog_'+ext)
             await online_msg.edit(content = online_msg.content + f'\n:white_check_mark: Cog extension `{ext}` loaded successfully!') if verbose_start else None
