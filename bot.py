@@ -29,7 +29,7 @@ async def on_ready():
         release_ver = None
 
     online_msg = await bt_channel.send(':cold_face: CASbot is online! rv '+str(release_ver))
-    await online_msg.edit(content = online_msg.content + f'\n:warning: Error.\n```\n{err}\n```') if err else None
+    # await online_msg.edit(content = online_msg.content + f'\n:warning: Error.\n```\n{err}\n```') if err else None
 
     for ext in util.cog_exts:
         try:
