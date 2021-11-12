@@ -101,7 +101,7 @@ class Admin(commands.Cog):
             return
         
         target_channel = self.bot.get_channel(channel_id)
-        target_message = target_channel.get_message(message_id)
+        target_message = await target_channel.fetch_message(message_id)
 
         try:
             if operation == 'edit':
