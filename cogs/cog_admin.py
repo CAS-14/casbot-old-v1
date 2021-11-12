@@ -77,7 +77,7 @@ class Admin(commands.Cog):
         else:
             try:
                 target_channel = self.bot.get_channel(target_id)
-                await target_channel.message.send(msg_content)
+                await target_channel.send(msg_content)
             except Exception as e:
                 await ctx.send(embed=Embed(title="CODE Error",description=f"`{e}`", color=0xff0000))
 
