@@ -45,8 +45,14 @@ class Admin(commands.Cog):
                 await ctx.send(":x: Access denied. You must be a **Bot Owner** (CAS) to use this command.")
                 return
 
+            args = list(args)
+            escaped_args = []
+            for arg in args:
+                escaped_arg = arg.replace('"', r'\"')
+                escaped_args.append(escaped_arg)
+
             try:
-                exec(''.join(args))
+                exec(' '.join(escaped_args))
             except Exception as e:
                 await ctx.send("`CODE ERROR`\n```\n"+str(e)+"\n```")
             else:
