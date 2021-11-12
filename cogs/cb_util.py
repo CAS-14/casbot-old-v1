@@ -11,9 +11,9 @@ def checkOwner(userid):
     else:
         return False
 
-def get_storage_message(bot, name):
+async def get_storage_message(bot, name):
     storage_channel = bot.get_channel(free_storage['CHANNEL'])
-    storage_message = storage_channel.fetch_message(free_storage[name])
+    storage_message = await storage_channel.fetch_message(free_storage[name])
     return storage_message
 
 prefix = 'c!'
