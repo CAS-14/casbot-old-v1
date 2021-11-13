@@ -9,7 +9,7 @@ def register(userid):
         return "User already registered"
     else:
         count = ref.child("usercount").get() + 1
-        ref.update({userid: {"balance":1000}, "usercount": count})
+        ref.update({userid: {"balance":200}, "usercount": count})
 
 def bset(userid, bal):
     db.reference(f"/currency/{userid}").update({"balance":bal})
