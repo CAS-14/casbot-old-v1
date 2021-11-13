@@ -11,10 +11,12 @@ def checkOwner(userid):
     else:
         return False
 
+'''
 async def get_storage_message(bot, name):
     storage_channel = await bot.get_channel(free_storage['CHANNEL'])
     storage_message = await storage_channel.fetch_message(free_storage[name])
     return storage_message
+'''
 
 prefix = 'c!'
 
@@ -33,4 +35,4 @@ free_storage = {'CHANNEL' : 896612054423703583,
 
 testvar = "cheezburger"
 
-cog_exts = ['core', 'admin', 'test']
+cog_exts = ['core', 'admin', 'test', 'misc']
