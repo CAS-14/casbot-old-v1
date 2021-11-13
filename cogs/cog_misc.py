@@ -14,8 +14,10 @@ class Miscellaneous(commands.Cog):
         value = ' '.join(args)
         value = False if value == '' else value
 
-        # key = key[:31] if len(key) > 32 else key if key else None
-        # value = value[:1023] if len(value) > 1024 else value if value else None
+        if key:
+            key = key[:31] if len(key) > 32 else key
+        if value:
+            value = value[:1023] if len(value) > 1024 else value
 
         # await ctx.send(f"**Debug**\n`oper={oper}`\n`key={key}`\n`value={str(value)}`\n")
 
