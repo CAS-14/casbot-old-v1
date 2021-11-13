@@ -69,13 +69,54 @@ class Miscellaneous(commands.Cog):
                     except Exception as e:
                         await ctx.send(f":x: `{e}`")
                     else:
-                        await ctx.send(f":white_check_mark: Key `{key}` has value `{value}`")
+                        await ctx.send(f":right_arrow: Key `{key}` has value `{value}`")
 
                 elif oper == 'edit':
-                    await ctx.send(f":x: Keys/Values cannot currently be edited.")
+                    try:
+                        key_scope = all_keys[all_keys.index(key+'$$ks:'):]
+                        key_scope = key_scope[:key_scope.index('$$ks;')+5]
+                        old_value = key_scope[(key_scope.index('$$ks:')+5):key_scope.index('$$ks;')]
+                    except ValueError as ve:
+                        await ctx.send(f":x: Key `{key}` not found.")
+                    except Exception as e:
+                        await ctx.send(f":x: `{e}`")
+                    else:
+                        old_key_scope = key_scope
+                        new_key_scope = key_scope.replace(old_value, value)
+                        ind = 0
+                        for ks in keystores:
+                            ind += 1
+                            try:
+                                keystore_new = ks.content.replace(old_key_scope, new_key_scope)
+                            except:
+                                None
+                            else:
+                                await ks.edit(content=keystore_new)
+
+                        await ctx.send(f":memo: Key `{key}` has been edited in keystore message {ind}.\nOld Value: `{old_value}`\nNew Value: `{value}`")
 
                 elif oper == 'delete':
-                    await ctx.send(f":x: Keys/Values cannot currently be deleted.")
+                    try:
+                        key_scope = all_keys[all_keys.index(key+'$$ks:'):]
+                        key_scope = key_scope[:key_scope.index('$$ks;')+5]
+                        value = key_scope[(key_scope.index('$$ks:')+5):key_scope.index('$$ks;')]
+                    except ValueError as ve:
+                        await ctx.send(f":x: Key `{key}` not found.")
+                    except Exception as e:
+                        await ctx.send(f":x: `{e}`")
+                    else:
+                        ind = 0
+                        for ks in keystores:
+                            ind += 1
+                            try:
+                                keystore_new = ks.content.replace(key_scope, '')
+                            except:
+                                None
+                            else:
+                                await ks.edit(content=keystore_new)
+
+                        await ctx.send(f":wastebasket: Key `{key}` with value `{value}` has been deleted from keystore message {ind}.")
+
                 
                 else:
                     await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}key <operation> <key> [value]`\nOperation Type: `add`, `edit`, `get`, `delete`", color=0xff0000))
