@@ -11,9 +11,8 @@ class Miscellaneous(commands.Cog):
     @commands.command()
     async def key(self, ctx, oper, key=None, *args):
 
-        try:
-            value = ' '.join(args)
-        except:
+        value = ' '.join(args)
+        if value is None:
             value = False
 
         await ctx.send(f"**Debug**\n`oper={oper}`\n`key={key}`\n`value={str(value)}`\n")
