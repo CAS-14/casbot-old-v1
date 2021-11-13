@@ -46,7 +46,7 @@ class Miscellaneous(commands.Cog):
                 if key+'$$ks:' not in all_keys:
                     if len(current_keystore.clean_content) > 1850:
                         current_keystore = await keystore_channel.send(f"{key}$$ks:{value}$$ks;")
-                        keystore_index = keystore_index + ',' + current_keystore.id
+                        keystore_index = keystore_index.content + ',' + str(current_keystore.id)
 
                     else:
                         await current_keystore.edit(content=current_keystore.content+key+'$$ks:'+value+'$$ks;')
