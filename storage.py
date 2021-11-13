@@ -38,4 +38,35 @@
 
         else:
             await ctx.send(":x: Access denied. You must be a **Bot Owner** to use this command.")
+
+elif oper == 'TEST':
+                if not util.checkMaster(ctx.author.id):
+                    await ctx.send(":x: Access denied. You must be a **Bot Master** to use this command.")
+                    return
+
+                testkey = "test"+str(randint(1000,9999))
+
+                await ctx.send(f"Testing `key add {testkey} abc123`")
+                await self.key(self, ctx, 'add', testkey, 'abc123')
+                await ctx.send(f"Testing `key get {testkey}`")
+                await self.key(self, ctx, 'get', testkey)
+                await ctx.send(f"Testing `key edit {testkey} xyz789`")
+                await self.key(self, ctx, 'edit', testkey, 'xyz789')
+                await ctx.send(f"Testing `key get {testkey}`")
+                await self.key(self, ctx, 'get', testkey)
+                await ctx.send(f"Testing `key delete {testkey}`")
+                await self.key(self, ctx, 'delete', testkey)
+                await ctx.send(f"Testing `key get {testkey}` (not found, should fail)")
+                await self.key(self, ctx, 'get', testkey)
+                await ctx.send(f"Testing `key add {testkey}` (no value, should fail")
+                await self.key(self, ctx, 'add', testkey)
+                await ctx.send(f"Testing `key add {testkey} multi word value`")
+                await self.key(self, ctx, 'add', testkey, 'multi', 'word', 'value')
+                await ctx.send(f"Testing `key get {testkey}`")
+                await self.key(self, ctx, 'get', testkey)
+                await ctx.send(f"Testing `key add {testkey} mno456` (already exists, should fail)")
+                await self.key(self, ctx, 'add', testkey, 'mno456')
+                await ctx.send(f"Test complete. Deleting {testkey}...")
+                await self.key(self, ctx, 'delete', testkey)
+                await ctx.send(":white_check_mark: Test finished.")
 '''
