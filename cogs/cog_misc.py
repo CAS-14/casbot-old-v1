@@ -10,7 +10,7 @@ class Miscellaneous(commands.Cog):
     async def key(self, ctx, *args):
         try:
             oper = args[0]
-            key = args[1] if oper != 'clear' else None
+            key = args[1] if oper != 'clear' or oper != 'getall' else None
             
         except:
             await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}key <operation> <key> [value]`\nOperation Type: `add`, `edit`, `get`, `delete`", color=0xff0000))
@@ -130,6 +130,9 @@ class Miscellaneous(commands.Cog):
                     await keystore_index.edit(content="KEYSTORES:"+str(current_keystore.id))
 
                     await ctx.send(":boom: Key database has been wiped and reset.")
+                
+                elif oper == 'getall':
+                    await ctx.send(all_keys)
                 
                 else:
                     await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}key <operation> <key> [value]`\nOperation Type: `add`, `edit`, `get`, `delete`", color=0xff0000))
