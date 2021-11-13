@@ -4,11 +4,11 @@ import cogs.cb_util as util
 from firebase_admin import db
 
 def register(userid):
-        ref = db.reference("/currency/")
-        if userid in ref.get():
-            return "User already registered"
-        else:
-            ref.update({userid: {"balance":1000}})
+    ref = db.reference("/currency/")
+    if str(userid) in ref.get():
+        return "User already registered"
+    else:
+        ref.update({userid: {"balance":1000}})
 
 def bset(userid, bal):
     db.reference(f"/currency/{userid}").update({"balance":bal})
