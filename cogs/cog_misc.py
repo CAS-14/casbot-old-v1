@@ -22,7 +22,7 @@ class Miscellaneous(commands.Cog):
                 value = None
 
         try:
-            
+
             async with ctx.typing():
 
                 keystore_channel = self.bot.get_channel(908850430547738685)
@@ -65,7 +65,7 @@ class Miscellaneous(commands.Cog):
                         key_scope = key_scope[:key_scope.index('$$ks;')+5]
                         value = key_scope[(key_scope.index('$$ks:')+5):key_scope.index('$$ks;')]
                     except ValueError as ve:
-                        await ctx.send(f":x: Key `{key}` not found.\n```\n{ve}\n```")
+                        await ctx.send(f":x: Key `{key}` not found.")
                     except Exception as e:
                         await ctx.send(f":x: `{e}`")
                     else:
