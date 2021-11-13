@@ -58,7 +58,7 @@ class Miscellaneous(commands.Cog):
 
             elif oper == 'get':
                 try:
-                    key_scope = all_keys[:all_keys.index(key+'$$ks:')]
+                    key_scope = all_keys[all_keys.index(key+'$$ks:'):]
                     key_scope = key_scope[:key_scope.index('$$ks;')]
                     value = key_scope[(key_scope.index('$$ks:')+5):key_scope.index('$$ks;')]
                 except ValueError as ve:
