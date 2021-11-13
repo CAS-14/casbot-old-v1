@@ -21,11 +21,13 @@ class Test(commands.Cog):
 
     @commands.command()
     async def bal(self, ctx):
+        await ctx.trigger_typing()
         register(ctx.author.id)
         await ctx.send(":moneybag: Your balance is $"+str(bget(ctx.author.id)))
 
     @commands.command()
     async def gain(self, ctx, amount):
+        await ctx.trigger_typing()
         register(ctx.author.id)
         if not util.checkMaster(ctx.author.id):
             await ctx.send(":x: Access denied. You must be a **Bot Master** to use this command.")
