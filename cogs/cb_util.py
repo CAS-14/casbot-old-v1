@@ -1,4 +1,22 @@
 # Make sure to update all values in bot.py
+import firebase_admin
+from firebase_admin import credentials, db
+import json
+
+def init_fb():
+    cred = credentials.Certificate("firebase_adminsdk.json")
+    firebase_admin.initialize_app(cred, {'databaseURL':"https://casbot-database-default-rtdb.firebaseio.com/"})
+
+def reset_database(confirmation):
+    if confirmation == "yes":
+        ref = db.reference("/")
+        with open("default_db.json", "r") as f:
+            file_contents = json.load(f)
+        ref.set(file_contents)
+        return("Database was reset.")
+    else:
+        return("Database was not reset.")
+
 def checkMaster(userid):
     if userid in bot_masters:
         return True

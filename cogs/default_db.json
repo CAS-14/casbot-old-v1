@@ -1,0 +1,11 @@
+{
+    "bot-data":
+    {
+        "release-ver": 140,
+        "test-value": "amogus"
+    }, 
+    "custom-key-values":
+    {
+        "base": "default"
+    }
+}
