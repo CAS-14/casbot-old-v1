@@ -30,13 +30,12 @@ async def on_ready():
             await bot.change_presence(activity=Game(name=f"cog error for {ext}..."))
     
     try:
-        ref = db.reference("/bot-data/release-ver")
+        ref = db.reference("/bot-data/release-ver/")
         release_ver = int(ref.get()) + 1
         ref.set(release_ver)
+        online_msg.edit(content = online_msg.content + " rv " + str(release_ver))
     except Exception as e:
         release_ver = None
         online_msg.edit(content = online_msg.content + f"\n:warning:{e}")
-    else:
-        online_msg.edit(content = online_msg.content + " rv " + str(release_ver))
 
 bot.run(TOKEN)
