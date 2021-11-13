@@ -14,7 +14,10 @@ class Miscellaneous(commands.Cog):
         value = ' '.join(args)
         value = False if value == '' else value
 
-        await ctx.send(f"**Debug**\n`oper={oper}`\n`key={key}`\n`value={str(value)}`\n")
+        key = key[:19] if len(key) > 20 else key
+        key = key.replace
+
+        # await ctx.send(f"**Debug**\n`oper={oper}`\n`key={key}`\n`value={str(value)}`\n")
 
         try:
             await ctx.trigger_typing()
@@ -26,7 +29,7 @@ class Miscellaneous(commands.Cog):
                 if key not in ref.get():
                     ref.update({key: value})
 
-                    await ctx.send(f":white_check_mark: Added Key `{key}` with Value `{value}`.")
+                    await ctx.send(f":white_check_mark: Added Key `{key}` with Value `{value}`")
 
                 else:
                     await ctx.send(f":x: Key `{key}` already exists in the key database.")
@@ -39,7 +42,6 @@ class Miscellaneous(commands.Cog):
                 if key in ref.get():
                     old_value = refk.get()
                     refk.set(value)
-
                     await ctx.send(f":memo: Key `{key}` has been edited.\nOld Value: `{old_value}`\nNew Value: `{value}`")
                 
                 else:
