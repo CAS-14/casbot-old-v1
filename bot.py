@@ -37,6 +37,6 @@ async def on_ready():
         release_ver = None
         online_msg.edit(content = online_msg.content + f"\n:warning:{e}")
     else:
-        online_msg.edit(content = online_msg.content + " rv " + release_ver)
+        online_msg.edit(content = online_msg.content + " rv " + str(release_ver))
 
 bot.run(TOKEN)
