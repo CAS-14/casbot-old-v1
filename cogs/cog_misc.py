@@ -3,6 +3,8 @@ from discord.ext import commands
 import cogs.cb_util as util
 from firebase_admin import db
 import json
+import traceback
+import sys
 
 class Miscellaneous(commands.Cog):
     def __init__(self, bot):
@@ -84,7 +86,7 @@ class Miscellaneous(commands.Cog):
                 await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}key <operation> <key> [value]`\nOperation Type: `add`, `edit`, `get`, `delete`", color=0xff0000))
 
         except Exception as e:
-            await ctx.send(embed=Embed(title="CODE Error",description=f"```\n{e}\n```", color=0xff0000))
+            await ctx.send(embed=Embed(title="CODE Error",description=f"```\n{traceback.format_exc(sys.last_type, sys.last_value, sys.last_traceback)}\n```", color=0xff0000))
 
 def setup(bot):
     bot.add_cog(Miscellaneous(bot))
