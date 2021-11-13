@@ -7,7 +7,14 @@ class Miscellaneous(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def key(self, ctx, oper, key, value=None):
+    async def key(self, ctx, *args):
+        try:
+            oper = args[0]
+            key = args[1]
+            value = ' '.join(args[2:]) if args[2] else None
+        except:
+            await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}key <operation> <key> [value]`\nOperation Type: `add`, `edit`, `get`, `delete`", color=0xff0000))
+
         keystore_channel = self.bot.get_channel(908850430547738685)
         keystore_index = await keystore_channel.fetch_message(908850883385757696)
 
