@@ -37,9 +37,11 @@ class Miscellaneous(commands.Cog):
                 current_keystore = keystores[-1]
 
                 key = key.replace('$$ks:', '').replace('$$ks;', '')
-                value = value.replace('$$ks:', '').replace('$$ks;', '')
                 key = (key[:19]) if len(key) > 20 else key
-                value = (value[:99]) if len(value) > 100 else value
+
+                if value is not None:
+                    value = value.replace('$$ks:', '').replace('$$ks;', '')
+                    value = (value[:99]) if len(value) > 100 else value
 
                 all_keys = ''
                 for ks in keystores:
@@ -125,7 +127,7 @@ class Miscellaneous(commands.Cog):
                     for ks in keystores:
                         await ks.delete()
                     current_keystore = await keystore_channel.send(f"$$ks;base$$ks:hello world$$ks;")
-                    await keystore_index.edit("KEYSTORES:"+str(current_keystore.id))
+                    await keystore_index.edit(content="KEYSTORES:"+str(current_keystore.id))
 
                     await ctx.send(":boom: Key database has been wiped and reset.")
                 
