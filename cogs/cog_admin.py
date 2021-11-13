@@ -84,7 +84,7 @@ class Admin(commands.Cog):
     @commands.command()
     async def message(self, ctx, *args):
         if not util.checkOwner(ctx.author.id):
-            await ctx.send(":x: Access denied. You must be a **Bot Master** to use this command.")
+            await ctx.send(":x: Access denied. You must be a **Bot Owner** to use this command.")
             return
 
         args = list(args)
