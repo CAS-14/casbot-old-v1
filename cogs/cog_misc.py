@@ -1,13 +1,15 @@
 from discord import *
 from discord.ext import commands
 import cogs.cb_util as util
-import firebase_admin
+import firebase_admin as fa
 from firebase_admin import credentials, db
 import json
 
 class Miscellaneous(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+    util.init_fb()
 
     @commands.command()
     async def key(self, ctx, *args):
