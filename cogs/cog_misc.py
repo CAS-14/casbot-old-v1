@@ -48,7 +48,7 @@ class Miscellaneous(commands.Cog):
                 if oper == 'add':
                     if key+'$$ks:' not in all_keys:
                         if len(current_keystore.clean_content) > 1850:
-                            current_keystore = await keystore_channel.send(f"{key}$$ks:{value}$$ks;")
+                            current_keystore = await keystore_channel.send(f"$$ks;{key}$$ks:{value}$$ks;")
                             await keystore_index.edit(content=keystore_index.content+','+str(current_keystore.id))
 
                         else:
@@ -61,7 +61,7 @@ class Miscellaneous(commands.Cog):
 
                 elif oper == 'get':
                     try:
-                        key_scope = all_keys[all_keys.index(key+'$$ks:'):]
+                        key_scope = all_keys[all_keys.index('$$ks;'+key+'$$ks:'):]
                         key_scope = key_scope[:key_scope.index('$$ks;')+5]
                         value = key_scope[(key_scope.index('$$ks:')+5):key_scope.index('$$ks;')]
                     except ValueError as ve:
@@ -93,7 +93,7 @@ class Miscellaneous(commands.Cog):
                             else:
                                 await ks.edit(content=keystore_new)
 
-                        await ctx.send(f":memo: Key `{key}` has been edited in keystore message {ind}.\nOld Value: `{old_value}`\nNew Value: `{value}`")
+                        await ctx.send(f":memo: Key `{key}` has been edited.\nOld Value: `{old_value}`\nNew Value: `{value}`")
 
                 elif oper == 'delete':
                     try:
@@ -115,8 +115,19 @@ class Miscellaneous(commands.Cog):
                             else:
                                 await ks.edit(content=keystore_new)
 
-                        await ctx.send(f":wastebasket: Key `{key}` with value `{value}` has been deleted from keystore message {ind}.")
+                        await ctx.send(f":wastebasket: Key `{key}` with value `{value}` has been deleted from the database.")
 
+                elif oper == 'clear':
+                    if not util.checkOwner(ctx.author.id):
+                        await ctx.send(":x: Access denied. You must be a **Bot Owner** to use this command.")
+                        return
+
+                    for ks in keystores:
+                        await ks.delete()
+                    current_keystore = await keystore_channel.send(f"$$ks;base$$ks:hello world$$ks;")
+                    await keystore_index.edit("KEYSTORES:"+current_keystore.id)
+
+                    await ctx.send(":boom: Key database has been wiped and reset.")
                 
                 else:
                     await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}key <operation> <key> [value]`\nOperation Type: `add`, `edit`, `get`, `delete`", color=0xff0000))
