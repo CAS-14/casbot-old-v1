@@ -12,28 +12,20 @@ class Miscellaneous(commands.Cog):
     util.init_fb()
 
     @commands.command()
-    async def key(self, ctx, *args):
+    async def key(self, ctx, oper, key=None, *args):
+
         try:
-            oper = args[0]
-            key = args[1] if oper != 'clear' or oper != 'getall' else None
-            
+            value = ' '.join(args[2:])
         except:
-            await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}key <operation> <key> [value]`\nOperation Type: `add`, `edit`, `get`, `delete`", color=0xff0000))
-            return
-        else:
-            try:
-                value = ' '.join(args[2:])
-            except:
-                value = None
+            value = False
 
         try:
-
             async with ctx.typing():
 
                 ref = db.reference('/custom-key-values/')
                 refk = db.reference(f'/custom-key-values/{key}/')
 
-                if oper == 'add' and value is not None:
+                if oper == 'add' and value:
                     if key not in ref.get():
                         ref.update({key: value})
 
@@ -42,7 +34,7 @@ class Miscellaneous(commands.Cog):
                     else:
                         await ctx.send(f":x: Key `{key}` already exists in the key database.")
 
-                elif oper == 'get':
+                elif oper == 'get' and key:
                     try:
                         value = refk.get()
                     except ValueError:
@@ -52,7 +44,7 @@ class Miscellaneous(commands.Cog):
                     else:
                         await ctx.send(f":arrow_right: Key `{key}` has value `{value}`")
 
-                elif oper == 'edit' and value is not None:
+                elif oper == 'edit' and value:
                     if key in ref.get():
                         old_value = refk.get()
                         refk.set(value)
@@ -62,7 +54,7 @@ class Miscellaneous(commands.Cog):
                     else:
                         await ctx.send(f":x: Key `{key}` not found.")
 
-                elif oper == 'delete':
+                elif oper == 'delete' and key:
                     if key in ref.get():
                         refk.delete()
                         await ctx.send(f":wastebasket: Key `{key}` with value `{value}` has been deleted from the database.")
@@ -77,16 +69,16 @@ class Miscellaneous(commands.Cog):
 
                     with open("default_db.json", "r") as f:
                         file_contents = json.load(f)
-                    ref.set(file_contents)
+                    ref.set({"base":"default"})
 
                     await ctx.send(":boom: Key database has been wiped and reset.")
                 
-                elif oper == 'getall':
+                elif oper == 'list':
                     if not util.checkMaster(ctx.author.id):
                         await ctx.send(":x: Access denied. You must be a **Bot Master** to use this command.")
                         return
 
-                    await ctx.send(ref.get(shallow=True))
+                    await ctx.send(f":scroll: All keys:\n```\n{ref.get()}\n```")
                 
                 else:
                     await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}key <operation> <key> [value]`\nOperation Type: `add`, `edit`, `get`, `delete`", color=0xff0000))
