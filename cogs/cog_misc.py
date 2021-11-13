@@ -3,6 +3,7 @@ from discord.ext import commands
 import cogs.cb_util as util
 from firebase_admin import db
 import json
+from random import randint
 
 class Miscellaneous(commands.Cog):
     def __init__(self, bot):
@@ -79,6 +80,37 @@ class Miscellaneous(commands.Cog):
 
                 await ctx.send(f":scroll: All keys:\n```\n{ref.get()}\n```")
             
+            elif oper == 'TEST':
+                if not util.checkMaster(ctx.author.id):
+                    await ctx.send(":x: Access denied. You must be a **Bot Master** to use this command.")
+                    return
+
+                testkey = "test"+str(randint(1000,9999))
+
+                await ctx.send(f"Testing `key add {testkey} abc123`")
+                await key('add', testkey, 'abc123')
+                await ctx.send(f"Testing `key get {testkey}`")
+                await key('get', testkey)
+                await ctx.send(f"Testing `key edit {testkey} xyz789`")
+                await key('edit', testkey, 'xyz789')
+                await ctx.send(f"Testing `key get {testkey}`")
+                await key('get', testkey)
+                await ctx.send(f"Testing `key delete {testkey}`")
+                await key('delete', testkey)
+                await ctx.send(f"Testing `key get {testkey}` (not found, should fail)")
+                await key('get', testkey)
+                await ctx.send(f"Testing `key add {testkey}` (no value, should fail")
+                await key('add', testkey)
+                await ctx.send(f"Testing `key add {testkey} multi word value`")
+                await key('add', testkey, 'multi', 'word', 'value')
+                await ctx.send(f"Testing `key get {testkey}`")
+                await key('get', testkey)
+                await ctx.send(f"Testing `key add {testkey} mno456` (already exists, should fail)")
+                await key('add', testkey, 'mno456')
+                await ctx.send(f"Test complete. Deleting {testkey}...")
+                await key('delete', testkey)
+                await ctx.send(":white_check_mark: Test finished.")
+
             else:
                 await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}key <operation> <key> [value]`\nOperation Type: `add`, `edit`, `get`, `delete`", color=0xff0000))
 
