@@ -12,8 +12,7 @@ class Miscellaneous(commands.Cog):
     async def key(self, ctx, oper, key=None, *args):
 
         value = ' '.join(args)
-        if value is None:
-            value = False
+        value = False if value == '' else value
 
         await ctx.send(f"**Debug**\n`oper={oper}`\n`key={key}`\n`value={str(value)}`\n")
 
@@ -33,14 +32,8 @@ class Miscellaneous(commands.Cog):
                     await ctx.send(f":x: Key `{key}` already exists in the key database.")
 
             elif oper == 'get' and key:
-                try:
-                    value = refk.get()
-                except ValueError:
-                    await ctx.send(f":x: Key `{key}` not found.")
-                except Exception as e:
-                    await ctx.send(f":x: `{e}`")
-                else:
-                    await ctx.send(f":arrow_right: Key `{key}` has value `{value}`")
+                value = refk.get() if key in ref.get() else None
+                await ctx.send(f":arrow_right: Key `{key}` has value `{value}`") if value else await ctx.send(f":x: Key `{key}` not found.")
 
             elif oper == 'edit' and value:
                 if key in ref.get():
