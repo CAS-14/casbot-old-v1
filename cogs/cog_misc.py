@@ -61,8 +61,8 @@ class Miscellaneous(commands.Cog):
                     key_scope = all_keys[:all_keys.index(key+'$$ks:')]
                     key_scope = key_scope[:key_scope.index('$$ks;')]
                     value = key_scope[(key_scope.index('$$ks:')+5):key_scope.index('$$ks;')]
-                except ValueError:
-                    await ctx.send(f":x: Key `{key}` not found.")
+                except ValueError as ve:
+                    await ctx.send(f":x: Key `{key}` not found.\n```\n{ve}\n```")
                 except Exception as e:
                     await ctx.send(f":x: `{e}`")
                 else:
