@@ -51,4 +51,4 @@ free_storage = {'CHANNEL' : 896612054423703583,
 
 testvar = "cheezburger"
 
-cog_exts = ['core', 'admin', 'test', 'misc']
+cog_exts = ['core', 'admin', 'test', 'misc', 'currency']
