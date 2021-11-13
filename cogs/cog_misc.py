@@ -25,7 +25,7 @@ class Miscellaneous(commands.Cog):
             keystore_channel = self.bot.get_channel(908850430547738685)
             keystore_index = await keystore_channel.fetch_message(908850883385757696)
 
-            keystore_ids = keystore_index.content.split(',')
+            keystore_ids = keystore_index.content.replace('KEYSTORES:','').split(',')
             keystores = [] # message format
             for kmi in keystore_ids:
                 keystore = await keystore_channel.fetch_message(int(kmi))
