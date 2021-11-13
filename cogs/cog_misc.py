@@ -8,8 +8,6 @@ class Miscellaneous(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    util.init_fb()
-
     @commands.command()
     async def key(self, ctx, oper, key=None, *args):
 

@@ -15,8 +15,6 @@ bot = commands.Bot(command_prefix=util.prefix, status=Status.online)
 
 verbose_start = False
 
-util.init_fb()
-
 @bot.event
 async def on_ready():
     bt_channel = bot.get_channel(util.channel_ids['BT-casbot']) 

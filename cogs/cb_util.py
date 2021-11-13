@@ -3,9 +3,7 @@ import firebase_admin
 from firebase_admin import credentials, db
 import json
 
-def init_fb():
-    cred = credentials.Certificate("firebase_adminsdk.json")
-    firebase_admin.initialize_app(cred, {'databaseURL':"https://casbot-database-default-rtdb.firebaseio.com/"})
+firebase_admin.initialize_app(credentials.Certificate("firebase_adminsdk.json"), {'databaseURL':"https://casbot-database-default-rtdb.firebaseio.com/"})
 
 def reset_database(confirmation):
     if confirmation == "yes":
