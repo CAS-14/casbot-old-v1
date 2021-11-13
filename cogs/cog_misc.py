@@ -125,7 +125,7 @@ class Miscellaneous(commands.Cog):
                     for ks in keystores:
                         await ks.delete()
                     current_keystore = await keystore_channel.send(f"$$ks;base$$ks:hello world$$ks;")
-                    await keystore_index.edit("KEYSTORES:"+current_keystore.id)
+                    await keystore_index.edit("KEYSTORES:"+str(current_keystore.id))
 
                     await ctx.send(":boom: Key database has been wiped and reset.")
                 
