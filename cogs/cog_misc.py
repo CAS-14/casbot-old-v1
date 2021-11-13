@@ -69,7 +69,7 @@ class Miscellaneous(commands.Cog):
                     except Exception as e:
                         await ctx.send(f":x: `{e}`")
                     else:
-                        await ctx.send(f":right_arrow: Key `{key}` has value `{value}`")
+                        await ctx.send(f":arrow_right: Key `{key}` has value `{value}`")
 
                 elif oper == 'edit':
                     try:
