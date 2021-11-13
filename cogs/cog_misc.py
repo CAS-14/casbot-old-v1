@@ -10,7 +10,7 @@ class Miscellaneous(commands.Cog):
     async def key(self, ctx, *args):
         try:
             oper = args[0]
-            key = args[1]
+            key = args[1] if oper != 'clear' else None
             
         except:
             await ctx.send(embed=Embed(title="Error",description=f"Bad arguments\n\nProper command format: `{util.prefix}key <operation> <key> [value]`\nOperation Type: `add`, `edit`, `get`, `delete`", color=0xff0000))
@@ -45,7 +45,7 @@ class Miscellaneous(commands.Cog):
                 for ks in keystores:
                     all_keys += ks.content
 
-                if oper == 'add':
+                if oper == 'add' and value is not None:
                     if key+'$$ks:' not in all_keys:
                         if len(current_keystore.clean_content) > 1850:
                             current_keystore = await keystore_channel.send(f"$$ks;{key}$$ks:{value}$$ks;")
@@ -71,7 +71,7 @@ class Miscellaneous(commands.Cog):
                     else:
                         await ctx.send(f":arrow_right: Key `{key}` has value `{value}`")
 
-                elif oper == 'edit':
+                elif oper == 'edit' and value is not None:
                     try:
                         key_scope = all_keys[all_keys.index(key+'$$ks:'):]
                         key_scope = key_scope[:key_scope.index('$$ks;')+5]
