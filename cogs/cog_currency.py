@@ -31,7 +31,7 @@ class Test(commands.Cog):
             await ctx.send(":x: Access denied. You must be a **Bot Master** to use this command.")
             return
         
-        bset(ctx.author.id, bget(ctx.author.id)+amount)
+        bset(ctx.author.id, bget(ctx.author.id)+int(amount))
         await ctx.send(f":money_with_wings: Added ${amount} to your balance. You now have ${bget(ctx.author.id)}")
 
 def setup(bot):
