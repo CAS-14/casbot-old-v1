@@ -17,7 +17,7 @@ class Miscellaneous(commands.Cog):
         key = key[:19] if len(key) > 20 else key
         key = key.replace
 
-        # await ctx.send(f"**Debug**\n`oper={oper}`\n`key={key}`\n`value={str(value)}`\n")
+        await ctx.send(f"**Debug**\n`oper={oper}`\n`key={key}`\n`value={str(value)}`\n")
 
         try:
             await ctx.trigger_typing()
@@ -26,8 +26,8 @@ class Miscellaneous(commands.Cog):
             refk = db.reference(f'/custom-key-values/{key}/')
 
             if oper == 'add' and value:
-                if key not in await ref.get():
-                    await ref.update({key: value})
+                if key not in ref.get():
+                    ref.update({key: value})
 
                     await ctx.send(f":white_check_mark: Added Key `{key}` with Value `{value}`")
 
@@ -35,11 +35,11 @@ class Miscellaneous(commands.Cog):
                     await ctx.send(f":x: Key `{key}` already exists in the key database.")
 
             elif oper == 'get' and key:
-                value = refk.get() if key in await ref.get() else None
+                value = refk.get() if key in ref.get() else None
                 await ctx.send(f":arrow_right: Key `{key}` has value `{value}`") if value else await ctx.send(f":x: Key `{key}` not found.")
 
             elif oper == 'edit' and value:
-                if key in await ref.get():
+                if key in ref.get():
                     old_value = refk.get()
                     refk.set(value)
                     await ctx.send(f":memo: Key `{key}` has been edited.\nOld Value: `{old_value}`\nNew Value: `{value}`")
@@ -48,7 +48,7 @@ class Miscellaneous(commands.Cog):
                     await ctx.send(f":x: Key `{key}` not found.")
 
             elif oper == 'delete' and key:
-                if key in await ref.get():
+                if key in ref.get():
                     value = refk.get()
                     refk.delete()
                     await ctx.send(f":wastebasket: Key `{key}` with value `{value}` has been deleted from the database.")
@@ -63,7 +63,7 @@ class Miscellaneous(commands.Cog):
 
                 with open("default_db.json", "r") as f:
                     file_contents = json.load(f)
-                await ref.set({"base":"default"})
+                ref.set({"base":"default"})
 
                 await ctx.send(":boom: Key database has been wiped and reset.")
             
