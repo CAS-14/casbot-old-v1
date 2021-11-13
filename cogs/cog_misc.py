@@ -14,8 +14,8 @@ class Miscellaneous(commands.Cog):
         value = ' '.join(args)
         value = False if value == '' else value
 
-        key = key[:31] if len(key) > 32 else key
-        value = value[:1023] if len(value) > 1024 else value
+        key = key[:31] if len(key) > 32 else key if key else None
+        value = value[:1023] if len(value) > 1024 else value if value else None
 
         # await ctx.send(f"**Debug**\n`oper={oper}`\n`key={key}`\n`value={str(value)}`\n")
 
@@ -36,7 +36,10 @@ class Miscellaneous(commands.Cog):
 
             elif oper == 'get' and key:
                 value = refk.get() if key in ref.get() else None
-                await ctx.send(f":arrow_right: Key `{key}` has value `{value}`") if value else await ctx.send(f":x: Key `{key}` not found.")
+                if value:
+                    await ctx.send(f":arrow_right: Key `{key}` has value `{value}`")
+                else: 
+                    await ctx.send(f":x: Key `{key}` not found.")
 
             elif oper == 'edit' and value:
                 if key in ref.get():
