@@ -7,7 +7,8 @@ def register(userid):
         ref = db.reference("/currency/")
         if userid in ref.get():
             return "User already registered"
-        ref.update({userid: {"balance":1000}})
+        else:
+            ref.update({userid: {"balance":1000}})
 
 def bset(userid, bal):
     db.reference(f"/currency/{userid}").update({"balance":bal})
