@@ -1,8 +1,7 @@
 from discord import *
 from discord.ext import commands
 import cogs.cb_util as util
-import firebase_admin as fa
-from firebase_admin import credentials, db
+from firebase_admin import db
 import json
 
 class Miscellaneous(commands.Cog):

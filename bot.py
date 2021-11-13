@@ -2,6 +2,7 @@ import os
 from discord import *
 from discord.ext import commands
 import cogs.cb_util as util
+from firebase_admin import db
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 
@@ -14,22 +15,13 @@ bot = commands.Bot(command_prefix=util.prefix, status=Status.online)
 
 verbose_start = False
 
+util.init_fb()
+
 @bot.event
 async def on_ready():
     bt_channel = bot.get_channel(util.channel_ids['BT-casbot']) 
 
-    try:
-        storage_channel = bot.get_channel(util.free_storage['CHANNEL'])
-        storage_message = await storage_channel.fetch_message(util.free_storage['rel_ver'])
-
-        release_ver = int(storage_message.content.replace("release version ", '')) + 1
-        await storage_message.edit(content="release version "+str(release_ver))
-    except Exception as e:
-        err = e
-        release_ver = None
-
-    online_msg = await bt_channel.send(':cold_face: CASbot is online! rv '+str(release_ver))
-    # await online_msg.edit(content = online_msg.content + f'\n:warning: Error.\n```\n{err}\n```') if err else None
+    online_msg = await bt_channel.send(':cold_face: CASbot is online!')
 
     for ext in util.cog_exts:
         try:
@@ -37,5 +29,15 @@ async def on_ready():
             await online_msg.edit(content = online_msg.content + f'\n:white_check_mark: Cog extension `{ext}` loaded successfully!') if verbose_start else None
         except Exception as err:
             await online_msg.edit(content = online_msg.content + f'\n:warning: Could not load cog extension `{ext}`.\n```\n{err}\n```')
+    
+    try:
+        ref = db.reference("/bot-data/release-ver")
+        release_ver = int(ref.get()) + 1
+        ref.set(release_ver)
+    except Exception as e:
+        release_ver = None
+        online_msg.edit(content = online_msg.content + f"\n:warning:{e}")
+    else:
+        online_msg.edit(content = online_msg.content + " rv " + release_ver)
 
 bot.run(TOKEN)
