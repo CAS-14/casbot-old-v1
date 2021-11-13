@@ -27,6 +27,7 @@ async def on_ready():
             await online_msg.edit(content = online_msg.content + f'\n:white_check_mark: Cog extension `{ext}` loaded successfully!') if verbose_start else None
         except Exception as err:
             await online_msg.edit(content = online_msg.content + f'\n:warning: Could not load cog extension `{ext}`.\n```\n{err}\n```')
+            await bot.change_presence(activity=Game(name=f"cog error for {ext}..."))
     
     try:
         ref = db.reference("/bot-data/release-ver")
