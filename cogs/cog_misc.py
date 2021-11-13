@@ -12,7 +12,7 @@ class Miscellaneous(commands.Cog):
     async def key(self, ctx, oper, key=None, *args):
 
         try:
-            value = ' '.join(args[2:])
+            value = ' '.join(args)
         except:
             value = False
 
