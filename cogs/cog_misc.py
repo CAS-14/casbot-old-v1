@@ -36,9 +36,9 @@ class Miscellaneous(commands.Cog):
 
                 current_keystore = keystores[-1]
 
-                key = key.replace('$$ks:', '').replace('$$ks;', '')
-                key = (key[:19]) if len(key) > 20 else key
-
+                if key is not None:
+                    key = key.replace('$$ks:', '').replace('$$ks;', '')
+                    key = (key[:19]) if len(key) > 20 else key
                 if value is not None:
                     value = value.replace('$$ks:', '').replace('$$ks;', '')
                     value = (value[:99]) if len(value) > 100 else value
