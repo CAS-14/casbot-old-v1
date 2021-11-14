@@ -26,7 +26,7 @@ class Main(commands.Cog):
     async def on_message(self, message):
         btc = self.bot.get_channel(895359225553907792)
         try:
-            await message.channel.send("i'm dad", reference=message.author) if message.author != self.user else None
+            await message.channel.send("i'm dad", reference=message.author) # if message.author != self.user else None
         except Exception as e:
             await btc.send("error: "+e)
 
