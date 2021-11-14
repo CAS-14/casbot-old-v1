@@ -26,7 +26,7 @@ async def on_ready():
         ref = db.reference("/bot-data/release-ver/")
         release_ver = int(ref.get()) + 1
         ref.set(release_ver)
-        await online_msg.edit(content = online_msg.content + " rv " + str(release_ver))
+        await online_msg.edit(content = online_msg.content + " `[rv " + str(release_ver)) + "]`"
     except Exception as e:
         release_ver = None
         await online_msg.edit(content = online_msg.content + f"\n:warning:{e}")
