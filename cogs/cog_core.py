@@ -24,7 +24,10 @@ class Main(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        await message.channel.send("i'm dad", reference=message.author) if message.author != self.user else None
+        try:
+            await message.channel.send("i'm dad", reference=message.author) if message.author != self.user else None
+        except Exception as e:
+            await message.channel.send("error: "+e)
 
 def setup(bot):
     bot.add_cog(Main(bot))
