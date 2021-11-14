@@ -22,7 +22,7 @@ class Main(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, ctx):
-        await ctx.reply("i'm dad") if not ctx.message.author.bot else None 
+        await ctx.reply("i'm dad") if ctx.message.author.id != self.bot.user.id else None
 
 def setup(bot):
     bot.add_cog(Main(bot))
