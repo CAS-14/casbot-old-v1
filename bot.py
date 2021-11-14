@@ -21,6 +21,7 @@ async def on_ready():
 
     online_msg = await bt_channel.send(':cold_face: CASbot is online!')
 
+    release_ver = -1
     try:
         ref = db.reference("/bot-data/release-ver/")
         release_ver = int(ref.get()) + 1
