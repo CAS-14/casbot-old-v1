@@ -20,5 +20,9 @@ class Main(commands.Cog):
     async def ping(self, ctx):
         await ctx.send(f"CASbot ping: {round(self.bot.latency * 1000)}ms")
 
+    @commands.Cog.listener()
+    async def on_message(self, ctx):
+        await ctx.reply("i'm dad") if not ctx.message.author.bot else None 
+
 def setup(bot):
-    bot.add_cog(Main(bot))    
+    bot.add_cog(Main(bot))
