@@ -26,18 +26,17 @@ async def on_ready():
         ref = db.reference("/bot-data/release-ver/")
         release_ver = int(ref.get()) + 1
         ref.set(release_ver)
+        await online_msg.edit(content = online_msg.content + " rv " + str(release_ver))
     except Exception as e:
         release_ver = None
-        online_msg.edit(content = online_msg.content + f"\n:warning:{e}")
-
-    online_msg.edit(content = online_msg.content + " rv " + str(release_ver))
+        await online_msg.edit(content = online_msg.content + f"\n:warning:{e}")
 
     for ext in util.cog_exts:
         try:
             bot.load_extension('cogs.cog_'+ext)
             await online_msg.edit(content = online_msg.content + f'\n:white_check_mark: Cog extension `{ext}` loaded successfully!') if verbose_start else None
-        except Exception as err:
-            await online_msg.edit(content = online_msg.content + f'\n:warning: Could not load cog extension `{ext}`.\n```\n{err}\n```')
+        except Exception as e:
+            await online_msg.edit(content = online_msg.content + f'\n:warning: Could not load cog extension `{ext}`.\n```\n{e}\n```')
             await bot.change_presence(activity=Game(name=f"cog error for {ext}..."))
 
 bot.run(TOKEN)
