@@ -16,7 +16,7 @@ bot = commands.Bot(command_prefix=util.prefix, status=Status.online)
 verbose_start = False
 
 @bot.event
-async def on_message():
+async def on_message(message):
     await message.reply("i'm dad") if message.author.id != bot.user.id else None
     await bot.process_commands(message)
 
