@@ -22,10 +22,5 @@ class Main(commands.Cog):
     async def ping(self, ctx):
         await ctx.send(f"CASbot ping: {round(self.bot.latency * 1000)}ms")
 
-    @commands.Cog.listener('on_message')
-    async def annoy(self, message):
-        await message.channel.send("i'm dad", reference=message.author) if message.author != self.user else None
-        await self.bot.process_commands(message)
-
 def setup(bot):
     bot.add_cog(Main(bot))

@@ -16,6 +16,11 @@ bot = commands.Bot(command_prefix=util.prefix, status=Status.online)
 verbose_start = False
 
 @bot.event
+async def on_message():
+    await message.channel.send("i'm dad", reference=message.author) if message.author != bot.user else None
+    await bot.process_commands(message)
+
+@bot.event
 async def on_ready():
     bt_channel = bot.get_channel(util.channel_ids['BT-casbot']) 
 
