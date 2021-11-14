@@ -5,6 +5,8 @@ from firebase_admin import db
 import json
 from random import randint
 
+print("
+
 class Miscellaneous(commands.Cog):
     def __init__(self, bot):
         self.bot = bot

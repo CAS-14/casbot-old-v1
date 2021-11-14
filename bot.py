@@ -21,6 +21,16 @@ async def on_ready():
 
     online_msg = await bt_channel.send(':cold_face: CASbot is online!')
 
+    try:
+        ref = db.reference("/bot-data/release-ver/")
+        release_ver = int(ref.get()) + 1
+        ref.set(release_ver)
+    except Exception as e:
+        release_ver = None
+        online_msg.edit(content = online_msg.content + f"\n:warning:{e}")
+
+    online_msg.edit(content = online_msg.content + " rv " + str(release_ver))
+
     for ext in util.cog_exts:
         try:
             bot.load_extension('cogs.cog_'+ext)
@@ -28,14 +38,5 @@ async def on_ready():
         except Exception as err:
             await online_msg.edit(content = online_msg.content + f'\n:warning: Could not load cog extension `{ext}`.\n```\n{err}\n```')
             await bot.change_presence(activity=Game(name=f"cog error for {ext}..."))
-    
-    try:
-        ref = db.reference("/bot-data/release-ver/")
-        release_ver = int(ref.get()) + 1
-        ref.set(release_ver)
-        online_msg.edit(content = online_msg.content + " rv " + str(release_ver))
-    except Exception as e:
-        release_ver = None
-        online_msg.edit(content = online_msg.content + f"\n:warning:{e}")
 
 bot.run(TOKEN)
