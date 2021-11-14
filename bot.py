@@ -17,7 +17,7 @@ verbose_start = False
 
 @bot.event
 async def on_message():
-    await message.channel.send("i'm dad", reference=message.author) if message.author != bot.user else None
+    await message.reply("i'm dad") if message.author.id != bot.user.id else None
     await bot.process_commands(message)
 
 @bot.event
