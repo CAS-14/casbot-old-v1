@@ -24,11 +24,11 @@ class Main(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        await self.bot.get_channel(895359225553907792).send("missionf ailed sucucueslyi")
-        #try:
-        #    await message.channel.send("i'm dad", reference=message.author) if message.author != self.user else None
-        #except Exception as e:
-        #    await message.channel.send("error: "+e)
+        btc = self.bot.get_channel(895359225553907792)
+        try:
+            await message.channel.send("i'm dad", reference=message.author) if message.author != self.user else None
+        except Exception as e:
+            await btc.send("error: "+e)
 
 def setup(bot):
     bot.add_cog(Main(bot))
